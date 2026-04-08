@@ -1,0 +1,18 @@
+# Запуск с проверкой действительности кука авторизации и селениумом
+# (из директории с cfg):
+py run_wp.py
+
+
+# запуск парсера пауков из директории с cfg
+# JOBDIR и FEEDS прописаны в каждом пауке, менять нельзя
+# и сохраняют jsonl в путь crawled_data/<имя паука>.jsonl
+# сессии парсера записываются в sessions/<имя паука>/
+
+py -m scrapy crawl WattpadParserEN
+py -m scrapy crawl WattpadParserEN_replies
+py -m scrapy crawl WattpadParserRU
+py -m scrapy crawl WattpadParserRU_replies
+
+# отдельный паук для проверки авторизации на сайте
+py -m scrapy crawl checker
+

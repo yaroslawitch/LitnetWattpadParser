@@ -1,0 +1,19 @@
+ВЫЗОВ ПАРСЕРА:
+
+# Через файл run_spider.py
+python run_litnet.py simple -o books.json
+
+python run_litnet.py offset -o books.jl --format jl #json-lines, будут лучше стыковаться данные при повторной записи в файл
+python run_litnet.py offset -o books.json
+
+python run_litnet.py jobdir -o books.jl --format jl #json-lines, будут лучше стыковаться данные при повторной записи в файл
+python run_litnet.py jobdir -o books.json
+
+# Через внутреннюю команду Scrapy
+scrapy crawl LitnetBooksParser -o books.json -a mode=simple
+
+scrapy crawl LitnetBooksParser -o books.jl -a mode=offset_file #json-lines, будут лучше стыковаться данные при повторной записи в файл
+scrapy crawl LitnetBooksParser -o books.json -a mode=offset_file
+
+scrapy crawl LitnetBooksParser -o books.jl -s JOBDIR=crawls/litnet_session -a mode=jobdir #json-lines, будут лучше стыковаться данные при повторной записи в файл
+scrapy crawl LitnetBooksParser -o books.json -s JOBDIR=crawls/litnet_session -a mode=jobdir
